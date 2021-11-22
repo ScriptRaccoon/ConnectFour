@@ -12,15 +12,17 @@ body {
     --front-color: hsl(249, 70%, 40%);
     --side-color: hsl(249, 70%, 35%);
     --back-color: hsl(249, 70%, 28%);
+    --red-color: rgb(209, 19, 12);
+    --yellow-color: rgb(255, 230, 0);
     overflow: hidden;
 }
 
 body.player0 {
-    --current-color: rgb(204, 13, 7);
+    --current-color: var(--red-color);
 }
 
 body.player1 {
-    --current-color: rgb(255, 230, 0);
+    --current-color: var(--yellow-color);
 }
 
 /* utils */
@@ -50,6 +52,14 @@ header {
 
 h1 {
     letter-spacing: 1px;
+    text-shadow: 0px 0px 2px #eee;
+}
+h1 span:nth-child(2n) {
+    color: var(--red-color);
+}
+
+h1 span:nth-child(2n + 1) {
+    color: var(--yellow-color);
 }
 
 /* status */
