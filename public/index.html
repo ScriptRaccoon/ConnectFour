@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four</title>
+    <meta property="og:title" content="Connect Four">
+    <meta property="og:description" content="The Connect Four game made with 3-dimensional CSS">
+    <meta property="og:type" content="Website">
+    <!-- TODO: -->
+    <meta property="og:url" content="">
+    <meta property="og:image" content="./screenshot.png">  
+    <meta property="og:site_name" content="Connect Four">
+        
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div id="status">
+            <span class="playerIcon"></span> <span id="message"></span>
+        </div>
+        <h1 class="center">Connect Four</h1>
+        <menu>
+            <button id="rotateLeftBtn">Rotate left</button>
+            <button id="rotateRightBtn">Rotate right</button>
+            <button id="restartBtn">Restart</button>
+        </menu>
+    </header>
+
+    <main id="scene">
+        <section id="game">
+            <div id="bottom"></div>
+            <div id="left"></div>
+            <div id="right"></div>
+            <div class="frame front"></div>
+            <div class="frame back"></div>
+            <div id="inner"></div>
+        </section>  
+    </main>
+
+    <section id="modal">
+        <div id="modalContent">
+            <form id="nameForm">
+                <h2 class="center">Choose names</h2>
+                <div>
+                    <label for="playerName1">Player 1:</label>
+                    <input type="text" id="playerName1">
+                </div>
+                <div>
+                    <label for="playerName2">Player 2:</label>
+                    <input type="text" id="playerName2">
+                </div>
+                <div class="center">
+                    <button role="submit">Start</button>      
+                </div>                
+            </form>
+            <div class="error center"></div>
+        </div>
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="main.js" type="module"></script>
+
+</body>
+</html>
