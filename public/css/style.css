@@ -9,9 +9,9 @@
 body {
     font-family: "Segoe UI", sans-serif;
     font-size: 20px;
-    --front-color: rgb(56, 33, 184);
-    --side-color: rgb(43, 22, 158);
-    --back-color: rgb(32, 14, 136);
+    --front-color: hsl(249, 70%, 40%);
+    --side-color: hsl(249, 70%, 35%);
+    --back-color: hsl(249, 70%, 28%);
     overflow: hidden;
 }
 
@@ -45,6 +45,7 @@ header {
     color: white;
     position: relative;
     z-index: 1;
+    box-shadow: 0px 0px 8px #006d;
 }
 
 h1 {
@@ -68,6 +69,7 @@ h1 {
     margin: 0px 5px;
     transform: translateY(8px);
     background: var(--current-color);
+    box-shadow: 0px 0px 5px #0007;
 }
 
 /* menu */
@@ -95,11 +97,12 @@ button {
     border-radius: 4px;
     cursor: pointer;
     margin: 0px 5px;
+    box-shadow: 0px 0px 5px #0007;
 }
 
 button:hover,
 button:focus {
-    background: rgb(88, 165, 58);
+    background: rgb(102, 182, 70);
 }
 
 /* scene and game */
@@ -151,10 +154,10 @@ button:focus {
 .frame.back {
     --frame-color: var(--back-color);
     transform: translateZ(calc(-1 * var(--depth)));
+    transform-style: preserve-3d;
 }
 
 .frame {
-    /* opacity: 0.05; */
     box-sizing: content-box;
     position: absolute;
     width: calc(var(--width) * 100px);
@@ -215,12 +218,14 @@ button:focus {
 .hole {
     width: 100px;
     height: 100px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1) inset;
 }
 
 .hole {
     background: radial-gradient(
         transparent 41px,
-        var(--frame-color) 42px
+        rgba(255, 255, 255, 0.15) 42px,
+        var(--frame-color) 43px
     );
 }
 
@@ -349,6 +354,10 @@ form input {
     margin: 0px 10px;
     border: 1px solid #aaa;
     border-radius: 10px;
+}
+
+form button {
+    box-shadow: none;
 }
 
 form input:focus {
