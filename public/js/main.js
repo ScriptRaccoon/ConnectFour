@@ -7,7 +7,6 @@ const game = {
     rows: [0, 1, 2, 3, 4, 5],
     cols: [0, 1, 2, 3, 4, 5, 6],
     playerNames: ["", ""],
-    colors: ["rgb(204, 13, 7)", "rgb(255, 230, 0)"],
     directions: [
         [0, 1],
         [1, 0],
@@ -19,6 +18,7 @@ const game = {
         [-1, 1],
     ],
     rotation: 0,
+    previewChip: null,
 };
 
 $(() => {
@@ -37,12 +37,21 @@ function generateHoles() {
         for (const col of game.cols) {
             $("<div></div>")
                 .attr("id", `hole${row}_${col}`)
-                .addClass("hole open")
+                .addClass("hole")
                 .appendTo(".frame")
-                .on("click", function () {
-                    addChip(this, col);
-                });
+                .on("mouseover", () => handleHover(row, col))
+                .on("click", () => fallChip(col));
         }
+    }
+}
+
+function handleHover(row, col) {
+    if (game.array[row][col] != null) return;
+    if (game.previewChip) {
+        game.previewChip
+            .css("opacity", 1)
+            .css("--row", row)
+            .css("--col", col);
     }
 }
 
@@ -52,6 +61,7 @@ function setPlayer(index) {
         .addClass(`player${index}`);
     $("#message").text(game.playerNames[index] + "'s turn");
     game.currentPlayer = index;
+    createPreviewChip();
 }
 
 function switchPlayer() {
@@ -69,6 +79,7 @@ function enableControls() {
     $("#restartBtn").on("click", resetGame);
     $("#rotateLeftBtn").on("click", () => rotateGame(+1));
     $("#rotateRightBtn").on("click", () => rotateGame(-1));
+    $("#game").on("mouseleave", hidePreviewChip);
 }
 
 function createPlayers(e) {
@@ -101,13 +112,16 @@ function resetGame() {
     }, 1000);
     $("#scene").removeClass("grow");
     $("#game").removeClass("duringMove");
-    $(".hole").addClass("open");
     $(".playerIcon").show();
-    setPlayer(randInt(0, 2));
-    game.playing = true;
+    setTimeout(() => {
+        setPlayer(randInt(0, 2));
+        game.playing = true;
+    }, 2000);
 }
 
 function removeChips() {
+    game.previewChip.remove();
+    game.previewChip = null;
     const firstRow = getFirstNonEmptyRow();
     for (let row = firstRow; row < game.rows.length; row++) {
         setTimeout(() => {
@@ -127,17 +141,31 @@ function rotateGame(direction) {
     $("#game").css("--rotation-y", game.rotation + "deg");
 }
 
-function addChip(hole, col) {
-    if (!$(hole).hasClass("open") || !game.playing || game.duringMove)
-        return;
+function createPreviewChip() {
+    game.previewChip = $("<div></div>")
+        .addClass("chip")
+        .css("--col", Math.floor(game.cols.length / 2))
+        .css("--row", -2)
+        .addClass(game.currentPlayer == 0 ? "red" : "yellow")
+        .appendTo("#inner");
+}
+
+function hidePreviewChip() {
+    game.previewChip?.css("opacity", 0);
+}
+
+function fallChip(col) {
+    if (!game.playing || game.duringMove) return;
     const row = getFirstEmptyRow(col);
     if (row == -1) return;
     game.array[row][col] = game.currentPlayer;
     game.duringMove = true;
     $("#game").addClass("duringMove");
+    game.previewChip.remove();
+    game.previewChip = null;
     const chip = $("<div></div>")
         .attr("id", `chip${row}_${col}`)
-        .addClass("chip")
+        .addClass("chip fall")
         .css("--col", col)
         .css("--row", -2)
         .addClass(game.currentPlayer == 0 ? "red" : "yellow")
@@ -146,13 +174,12 @@ function addChip(hole, col) {
         chip.css("--row", row);
     }, 0);
     setTimeout(() => {
-        game.duringMove = false;
-        $(`#hole${row}_${col}`).removeClass("open");
         checkEnding();
     }, 600);
 }
 
 function checkEnding() {
+    game.duringMove = false;
     game.playing = false;
     if (isWon()) {
         $("#message").text(

@@ -232,22 +232,12 @@ button:focus {
     width: 100px;
     height: 100px;
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1) inset;
-}
-
-.hole {
     background: radial-gradient(
         transparent 41px,
         rgba(255, 255, 255, 0.15) 42px,
         var(--frame-color) 43px
     );
-}
-
-#game:not(.duringMove) .hole.open:hover {
     cursor: pointer;
-    background: radial-gradient(
-        var(--current-color) 41px,
-        var(--frame-color) 42px
-    );
 }
 
 /* inner and chips */
@@ -273,11 +263,16 @@ button:focus {
     height: 90px;
     margin: 5px;
     border-radius: 50%;
-    transition: transform 600ms ease-in;
+    transition: transform ease-in, opacity linear;
+    transition-duration: 60ms;
     transform: translate(
         calc(var(--col) * 100px),
         calc(var(--row) * 100px)
     );
+}
+
+.chip.fall {
+    transition-duration: 600ms;
 }
 
 .chip.highlight,
