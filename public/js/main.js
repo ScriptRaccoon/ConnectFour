@@ -27,17 +27,17 @@ $(() => {
         .css("--rows", game.rows.length)
         .css("--cols", game.cols.length);
     $("#modalContent").fadeIn("slow");
-    generateHoles();
+    generateSlots();
     resetArray();
     enableControls();
 });
 
-function generateHoles() {
+function generateSlots() {
     for (const row of game.rows) {
         for (const col of game.cols) {
             $("<div></div>")
-                .attr("id", `hole${row}_${col}`)
-                .addClass("hole")
+                .attr("id", `slot${row}_${col}`)
+                .addClass("slot")
                 .appendTo(".frame")
                 .on("mouseover", () => handleHover(row, col))
                 .on("click", () => fallChip(col));
@@ -185,7 +185,7 @@ function checkEnding() {
         $("#message").text(
             game.playerNames[game.currentPlayer] + " has won! 🎉"
         );
-    } else if (!hasOpenHoles()) {
+    } else if (!hasOpenSlots()) {
         $(".playerIcon").hide();
         $("#message").text("The game has ended in a draw.");
     } else {
@@ -214,7 +214,7 @@ function getFirstNonEmptyRow() {
     return row;
 }
 
-function hasOpenHoles() {
+function hasOpenSlots() {
     return game.array.some((row) => row.some((x) => x == null));
 }
 
