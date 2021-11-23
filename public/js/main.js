@@ -93,6 +93,10 @@ function startGame() {
 function resetGame() {
     removeChips();
     resetArray();
+    $("#game").addClass("restart");
+    setTimeout(() => {
+        $("#game").removeClass("restart");
+    }, 1000);
     $("#scene").removeClass("grow");
     $("#game").removeClass("duringMove");
     $(".hole").addClass("open");

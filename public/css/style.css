@@ -154,6 +154,10 @@ button:focus {
     --rotation-x: -20deg;
 }
 
+#game.restart {
+    --rotation-x: -45deg;
+}
+
 /* frame */
 
 .frame.front {
