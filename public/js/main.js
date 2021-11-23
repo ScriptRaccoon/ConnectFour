@@ -102,13 +102,14 @@ function resetGame() {
 }
 
 function removeChips() {
-    for (const row of game.rows) {
+    const firstRow = getFirstNonEmptyRow();
+    for (let row = firstRow; row < game.rows.length; row++) {
         setTimeout(() => {
             for (const col of game.cols) {
-                const chip = $(`#chip${row}_${col}`).css("--row", -5);
+                const chip = $(`#chip${row}_${col}`).css("--row", -3);
                 setTimeout(() => chip.remove(), 600);
             }
-        }, 100 * row);
+        }, 200 * (row - firstRow));
     }
 }
 
@@ -132,10 +133,12 @@ function addChip(hole, col) {
         .attr("id", `chip${row}_${col}`)
         .addClass("chip")
         .css("--col", col)
-        .css("--row", -1)
+        .css("--row", -2)
         .addClass(game.currentPlayer == 0 ? "red" : "yellow")
         .appendTo("#inner");
-    setTimeout(() => chip.css("--row", row), 0);
+    setTimeout(() => {
+        chip.css("--row", row);
+    }, 0);
     setTimeout(() => {
         game.duringMove = false;
         $(`#hole${row}_${col}`).removeClass("open");
@@ -163,6 +166,17 @@ function getFirstEmptyRow(col) {
     let row = game.rows[game.rows.length - 1];
     while (row >= 0 && game.array[row][col] != null) {
         row--;
+    }
+    return row;
+}
+
+function getFirstNonEmptyRow() {
+    let row = 0;
+    while (
+        row < game.rows.length &&
+        game.array[row].every((x) => x == null)
+    ) {
+        row++;
     }
     return row;
 }

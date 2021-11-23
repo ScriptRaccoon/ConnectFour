@@ -12,8 +12,8 @@ body {
     --front-color: hsl(249, 70%, 40%);
     --side-color: hsl(249, 70%, 35%);
     --back-color: hsl(249, 70%, 28%);
-    --red-color: rgb(209, 19, 12);
-    --yellow-color: rgb(255, 230, 0);
+    --red-color: rgb(226, 32, 26);
+    --yellow-color: rgb(255, 240, 0);
     overflow: hidden;
 }
 
@@ -52,7 +52,6 @@ header {
 
 h1 {
     letter-spacing: 1px;
-    text-shadow: 0px 0px 2px #eee;
 }
 h1 span:nth-child(2n) {
     color: var(--red-color);
