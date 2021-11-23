@@ -31,10 +31,6 @@ body.player1 {
     text-align: center;
 }
 
-.show {
-    opacity: 1 !important;
-}
-
 /* header */
 
 header {
@@ -49,6 +45,8 @@ header {
     z-index: 1;
     box-shadow: 0px 0px 8px #006d;
 }
+
+/* heading */
 
 h1 {
     letter-spacing: 1px;
@@ -145,8 +143,6 @@ button:focus {
     justify-content: center;
     transform: rotateX(var(--rotation-x)) rotateY(var(--rotation-y));
     transition: transform 1s ease;
-    --width: 7;
-    --height: 6;
     --depth: 30px;
 }
 
@@ -173,10 +169,11 @@ button:focus {
 .frame {
     box-sizing: content-box;
     position: absolute;
-    width: calc(var(--width) * 100px);
-    height: calc(var(--height) * 100px);
-    display: flex;
-    flex-wrap: wrap;
+    width: calc(var(--cols) * 100px);
+    height: calc(var(--rows) * 100px);
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
     border: 10px solid var(--frame-color);
     outline: 1px solid var(--frame-color);
 }
@@ -187,7 +184,7 @@ button:focus {
 #bottom {
     position: absolute;
     background: var(--side-color);
-    width: calc(var(--width) * 100px + 20px);
+    width: calc(var(--cols) * 100px + 20px);
     height: var(--depth);
     outline: 1px solid var(--side-color);
 }
@@ -195,7 +192,7 @@ button:focus {
 #bottom {
     transform-origin: bottom;
     transform: translateY(
-            calc(var(--height) * 100px - var(--depth) + 20px)
+            calc(var(--rows) * 100px - var(--depth) + 20px)
         )
         rotateX(90deg);
 }
@@ -205,7 +202,7 @@ button:focus {
     position: absolute;
     background: var(--side-color);
     width: var(--depth);
-    height: calc(var(--height) * 100px + 20px);
+    height: calc(var(--rows) * 100px + 20px);
     outline: 1px solid var(--side-color);
 }
 
@@ -213,7 +210,7 @@ button:focus {
     transform-origin: left;
     transform: translateX(
             calc(
-                0.5 * var(--width) * 100px + 0.5 * var(--depth) + 10px
+                0.5 * var(--cols) * 100px + 0.5 * var(--depth) + 10px
             )
         )
         rotateY(90deg);
@@ -223,7 +220,7 @@ button:focus {
     transform-origin: right;
     transform: translateX(
             calc(
-                -0.5 * var(--width) * 100px - 0.5 * var(--depth) - 10px
+                -0.5 * var(--cols) * 100px - 0.5 * var(--depth) - 10px
             )
         )
         rotateY(-90deg);
@@ -259,8 +256,8 @@ button:focus {
     --chip-depth: 20px;
     position: relative;
     display: flex;
-    width: calc(var(--width) * 100px + 20px);
-    height: calc(var(--height) * 100px + 20px);
+    width: calc(var(--cols) * 100px + 20px);
+    height: calc(var(--rows) * 100px + 20px);
     padding: 10px;
     transform: translateZ(
         calc(-0.5 * var(--depth) + 0.5 * var(--chip-depth))
@@ -349,11 +346,11 @@ button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
     transition: opacity 1s ease;
 }
 
 #modalContent {
+    display: none;
     padding: 20px;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 0px 10px #333;

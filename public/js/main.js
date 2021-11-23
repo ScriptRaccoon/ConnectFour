@@ -22,8 +22,11 @@ const game = {
 };
 
 $(() => {
-    $("#game").addClass("start");
-    $("#modal").addClass("show");
+    $("#game")
+        .addClass("start")
+        .css("--rows", game.rows.length)
+        .css("--cols", game.cols.length);
+    $("#modalContent").fadeIn("slow");
     generateHoles();
     resetArray();
     enableControls();
@@ -62,8 +65,7 @@ function resetArray() {
 }
 
 function enableControls() {
-    $("#modal").fadeIn();
-    $("#nameForm").on("submit", createPlayers);
+    $("#playerForm").on("submit", createPlayers);
     $("#restartBtn").on("click", resetGame);
     $("#rotateLeftBtn").on("click", () => rotateGame(+1));
     $("#rotateRightBtn").on("click", () => rotateGame(-1));
