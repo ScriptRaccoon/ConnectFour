@@ -255,7 +255,6 @@ button:focus {
 #inner {
     --chip-depth: 20px;
     position: relative;
-    display: flex;
     width: calc(var(--cols) * 100px + 20px);
     height: calc(var(--rows) * 100px + 20px);
     padding: 10px;
