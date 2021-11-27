@@ -13,6 +13,8 @@ body {
     --red-color: rgb(226, 32, 26);
     --yellow-color: rgb(255, 240, 0);
     overflow: hidden;
+    --slot-size: min(110px, 12vw);
+    --border-size: calc(0.1 * var(--slot-size));
 }
 
 body.player0 {

@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     transition: opacity 1s ease;
+    padding: 10px;
 }
 
 #modalContent {
@@ -19,14 +20,11 @@
     border-radius: 20px;
 }
 
-form > div {
-    margin: 15px 0px;
-}
-
 form input {
-    width: 300px;
+    /* max-width: 350px; */
+    max-width: 200px;
     padding: 10px;
-    margin: 0px 10px;
+    margin: 10px;
     border: 1px solid #aaa;
     border-radius: 10px;
 }
@@ -40,7 +38,7 @@ form input:focus {
 }
 
 .error {
-    padding: 10px;
+    margin: 10px;
     color: red;
     font-weight: bold;
 }

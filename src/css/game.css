@@ -1,5 +1,5 @@
 #scene {
-    margin-top: 65px;
+    margin-top: 80px;
     perspective: 1800px;
 }
 
@@ -27,7 +27,7 @@
     justify-content: center;
     transform: rotateX(var(--rotation-x)) rotateY(var(--rotation-y));
     transition: transform 1s ease;
-    --depth: 30px;
+    --depth: calc(3 * var(--border-size));
 }
 
 #game.start {

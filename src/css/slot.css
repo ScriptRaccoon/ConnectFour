@@ -1,19 +1,19 @@
 .slot {
-    width: 100px;
-    height: 100px;
+    width: var(--slot-size);
+    height: var(--slot-size);
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1) inset;
     background: radial-gradient(
-        transparent 41px,
-        rgba(255, 255, 255, 0.15) 42px,
-        var(--frame-color) 43px
+        transparent 58%,
+        rgba(255, 255, 255, 0.15) 60%,
+        var(--frame-color) 61%
     );
     cursor: pointer;
 }
 
 .slot:hover {
     background: radial-gradient(
-        transparent 41px,
-        white 42px,
-        var(--frame-color) 46px
+        transparent 58%,
+        white 60%,
+        var(--frame-color) 61%
     );
 }
