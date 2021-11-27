@@ -16,6 +16,7 @@ function resetGame() {
     resetArray();
     $("#game").addClass("restart");
     setTimeout(() => {
+        $("header").removeClass("jumping");
         $("#game").removeClass("restart");
     }, 1000);
     $("#scene").removeClass("grow");

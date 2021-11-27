@@ -34,4 +34,5 @@ function highlightChips(coords) {
         $(`#chip${row}_${col}`).addClass("highlight");
     }
     $("#scene").addClass("grow");
+    $("header").addClass("jumping");
 }

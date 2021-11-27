@@ -21,3 +21,19 @@ h1 span:nth-child(2n) {
 h1 span:nth-child(2n + 1) {
     color: var(--yellow-color);
 }
+
+header.jumping h1 span {
+    display: inline-block;
+    animation: jump 500ms ease infinite;
+    animation-delay: calc(var(--n) * 50ms);
+}
+
+@keyframes jump {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
