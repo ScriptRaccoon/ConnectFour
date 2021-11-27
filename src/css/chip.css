@@ -1,0 +1,85 @@
+#inner {
+    --chip-depth: 20px;
+    position: relative;
+    width: calc(var(--cols) * 100px + 20px);
+    height: calc(var(--rows) * 100px + 20px);
+    padding: 10px;
+    transform: translateZ(
+        calc(-0.5 * var(--depth) + 0.5 * var(--chip-depth))
+    );
+    transform-style: preserve-3d;
+}
+
+.chip {
+    --col: 0;
+    --row: 0;
+    transform-style: preserve-3d;
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    margin: 5px;
+    border-radius: 50%;
+    transition: transform ease-in, opacity linear;
+    transition-duration: 60ms;
+    transform: translate(
+        calc(var(--col) * 100px),
+        calc(var(--row) * 100px)
+    );
+}
+
+.chip.fall {
+    transition-duration: 600ms;
+}
+
+.chip.highlight,
+.chip.highlight:before {
+    animation: highlight-animation 1s ease-in-out infinite;
+}
+
+@keyframes highlight-animation {
+    0% {
+        box-shadow: 0px 0px 0px var(--highlight-color) inset;
+    }
+    50% {
+        box-shadow: 0px 0px 40px var(--highlight-color) inset;
+    }
+    100% {
+        box-shadow: 0px 0px 0px var(--highlight-color) inset;
+    }
+}
+
+.chip:before {
+    position: absolute;
+    content: "";
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background: inherit;
+    transform: translateZ(calc(-1 * var(--chip-depth)));
+}
+
+.chip.yellow {
+    background: radial-gradient(
+        hsl(54, 97%, 68%) 20%,
+        hsl(54, 97%, 48%) 35%,
+        hsl(54, 97%, 56%) 40%,
+        hsl(54, 97%, 56%) 45%,
+        hsl(54, 97%, 48%) 50%,
+        hsl(54, 97%, 54%) 59%,
+        hsl(54, 97%, 50%) 100%
+    );
+    --highlight-color: rgba(255, 0, 0, 0.7);
+}
+
+.chip.red {
+    background: radial-gradient(
+        hsl(0, 97%, 60%) 20%,
+        hsl(0, 97%, 48%) 35%,
+        hsl(0, 97%, 56%) 40%,
+        hsl(0, 97%, 56%) 45%,
+        hsl(0, 97%, 48%) 50%,
+        hsl(0, 97%, 54%) 59%,
+        hsl(0, 97%, 50%) 100%
+    );
+    --highlight-color: rgba(255, 255, 0, 0.7);
+}

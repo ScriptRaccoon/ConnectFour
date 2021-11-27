@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 20px;
+    --front-color: hsl(249, 70%, 40%);
+    --side-color: hsl(249, 70%, 35%);
+    --back-color: hsl(249, 70%, 28%);
+    --red-color: rgb(226, 32, 26);
+    --yellow-color: rgb(255, 240, 0);
+    overflow: hidden;
+}
+
+body.player0 {
+    --current-color: var(--red-color);
+}
+
+body.player1 {
+    --current-color: var(--yellow-color);
+}

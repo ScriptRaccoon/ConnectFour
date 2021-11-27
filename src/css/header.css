@@ -1,0 +1,23 @@
+header {
+    background: linear-gradient(
+        to top,
+        var(--front-color),
+        var(--back-color)
+    );
+    padding: 20px 0px;
+    color: white;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0px 0px 8px #006d;
+}
+
+h1 {
+    letter-spacing: 1px;
+}
+h1 span:nth-child(2n) {
+    color: var(--red-color);
+}
+
+h1 span:nth-child(2n + 1) {
+    color: var(--yellow-color);
+}

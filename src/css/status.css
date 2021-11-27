@@ -1,0 +1,17 @@
+#status {
+    display: none;
+    position: absolute;
+    left: 10px;
+    top: 25px;
+}
+
+.playerIcon {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 0px 5px;
+    transform: translateY(8px);
+    background: var(--current-color);
+    box-shadow: 0px 0px 5px #0007;
+}

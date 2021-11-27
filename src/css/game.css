@@ -1,0 +1,39 @@
+#scene {
+    margin-top: 65px;
+    perspective: 1800px;
+}
+
+#scene.grow {
+    animation: grow 1s ease forwards;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#game {
+    --rotation-x: 0deg;
+    --rotation-y: 0deg;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    transform: rotateX(var(--rotation-x)) rotateY(var(--rotation-y));
+    transition: transform 1s ease;
+    --depth: 30px;
+}
+
+#game.start {
+    --rotation-x: -20deg;
+}
+
+#game.restart {
+    --rotation-x: -45deg;
+}
