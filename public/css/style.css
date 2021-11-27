@@ -240,6 +240,14 @@ button:focus {
     cursor: pointer;
 }
 
+.slot:hover {
+    background: radial-gradient(
+        transparent 41px,
+        white 42px,
+        var(--frame-color) 46px
+    );
+}
+
 /* inner and chips */
 
 #inner {
