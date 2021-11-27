@@ -18,7 +18,6 @@ const game = {
         [-1, 1],
     ],
     rotation: 0,
-    previewChip: null,
 };
 
 $(() => {
@@ -39,19 +38,8 @@ function generateSlots() {
                 .attr("id", `slot${row}_${col}`)
                 .addClass("slot")
                 .appendTo(".frame")
-                .on("mouseover", () => handleHover(row, col))
                 .on("click", () => fallChip(col));
         }
-    }
-}
-
-function handleHover(row, col) {
-    if (game.array[row][col] != null) return;
-    if (game.previewChip) {
-        game.previewChip
-            .css("opacity", 1)
-            .css("--row", row)
-            .css("--col", col);
     }
 }
 
@@ -61,7 +49,6 @@ function setPlayer(index) {
         .addClass(`player${index}`);
     $("#message").text(game.playerNames[index] + "'s turn");
     game.currentPlayer = index;
-    createPreviewChip();
 }
 
 function switchPlayer() {
@@ -79,7 +66,6 @@ function enableControls() {
     $("#restartBtn").on("click", resetGame);
     $("#rotateLeftBtn").on("click", () => rotateGame(+1));
     $("#rotateRightBtn").on("click", () => rotateGame(-1));
-    $("#game").on("mouseleave", hidePreviewChip);
 }
 
 function createPlayers(e) {
@@ -120,8 +106,6 @@ function resetGame() {
 }
 
 function removeChips() {
-    game.previewChip.remove();
-    game.previewChip = null;
     const firstRow = getFirstNonEmptyRow();
     for (let row = firstRow; row < game.rows.length; row++) {
         setTimeout(() => {
@@ -141,19 +125,6 @@ function rotateGame(direction) {
     $("#game").css("--rotation-y", game.rotation + "deg");
 }
 
-function createPreviewChip() {
-    game.previewChip = $("<div></div>")
-        .addClass("chip")
-        .css("--col", Math.floor(game.cols.length / 2))
-        .css("--row", -2)
-        .addClass(game.currentPlayer == 0 ? "red" : "yellow")
-        .appendTo("#inner");
-}
-
-function hidePreviewChip() {
-    game.previewChip?.css("opacity", 0);
-}
-
 function fallChip(col) {
     if (!game.playing || game.duringMove) return;
     const row = getFirstEmptyRow(col);
@@ -161,8 +132,6 @@ function fallChip(col) {
     game.array[row][col] = game.currentPlayer;
     game.duringMove = true;
     $("#game").addClass("duringMove");
-    game.previewChip.remove();
-    game.previewChip = null;
     const chip = $("<div></div>")
         .attr("id", `chip${row}_${col}`)
         .addClass("chip fall")
