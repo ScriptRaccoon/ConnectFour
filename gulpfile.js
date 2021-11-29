@@ -18,18 +18,18 @@ const paths = {
 function gulpJS() {
     return src(paths.js.src)
         .pipe(sourcemaps.init())
-        .pipe(uglify())
         .pipe(concat("bundle.js"))
-        .pipe(sourcemaps.write())
+        .pipe(uglify())
+        .pipe(sourcemaps.write("./"))
         .pipe(dest(paths.js.dest));
 }
 
 function gulpCSS() {
     return src(paths.css.src)
         .pipe(sourcemaps.init())
-        .pipe(cleanCSS())
         .pipe(concat("bundle.css"))
-        .pipe(sourcemaps.write())
+        .pipe(cleanCSS())
+        .pipe(sourcemaps.write("./"))
         .pipe(dest(paths.css.dest));
 }
 
