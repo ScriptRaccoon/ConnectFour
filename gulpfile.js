@@ -19,7 +19,7 @@ function gulpJS() {
     return src(paths.js.src)
         .pipe(sourcemaps.init())
         .pipe(concat("bundle.js"))
-        .pipe(uglify())
+        .pipe(uglify({ mangle: { toplevel: true } }))
         .pipe(sourcemaps.write("./"))
         .pipe(dest(paths.js.dest));
 }
